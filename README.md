@@ -1,2 +1,1 @@
-# SelenideBoilerplate
-Java + Selenide + TestNG + Allure + Page Object
+`allure serve target/allure-results`
