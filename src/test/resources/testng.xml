@@ -1,10 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestSuite" verbose="1" parallel="methods" thread-count="2" >
+<suite name="CopybetAutoTests" verbose="1"  >
 
-    <test name="Test">
+<!--    parallel="methods" thread-count="2"-->
+
+    <listeners>
+        <listener class-name="A_ErrorsLogListener"/>
+    </listeners>
+
+    <test name="Tests">
         <classes>
-            <class name="BaseTest" />
+            <class name="LoginTest" />
+
         </classes>
     </test>
 
