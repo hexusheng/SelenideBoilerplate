@@ -9,25 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverHelper {
 
-
     public static WebDriver currentDriver() {
         return DriverContainer.getCurrentDriver();
     }
 
     public static void open(String url) {
         currentDriver().get(url);
-    }
-
-
-    public static void clearCookies() {
-        open(AppConfig.baseUrl);
-        currentDriver().manage().deleteAllCookies();
-        executeJs("localStorage.clear();");
-    }
-
-    public static void quit() {
-        currentDriver().quit();
-        DriverContainer.removeDriver();
     }
 
     public static void refresh() {
@@ -56,12 +43,23 @@ public class DriverHelper {
         }
     }
 
+    public static void maximize() {
+        currentDriver().manage().window().maximize();
+    }
+
     public static void changeWindowSize(int width, int height) {
         currentDriver().manage().window().setSize(new Dimension(width, height));
     }
 
-    public static void maximize() {
-        currentDriver().manage().window().maximize();
+    public static void clearCookies() {
+        open(AppConfig.baseUrl);
+        currentDriver().manage().deleteAllCookies();
+        executeJs("localStorage.clear();");
+    }
+
+    public static void quit() {
+        currentDriver().quit();
+        DriverContainer.removeDriver();
     }
 
     public static void wait(int seconds)

@@ -7,8 +7,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.asserts.SoftAssert;
 
-
-
 class A_BaseTest {
 
     protected App app;

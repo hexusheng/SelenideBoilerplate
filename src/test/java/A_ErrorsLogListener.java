@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 
 public class A_ErrorsLogListener implements ITestListener {
 
-    @Attachment(value = "Page screenshot", type = "image/png")
+    @Attachment(value = "error screenshot", type = "image/png")
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) DriverHelper.currentDriver()).getScreenshotAs(OutputType.BYTES);
     }
@@ -40,7 +40,7 @@ public class A_ErrorsLogListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult TestResult) {
-
+        takeScreenshot();
     }
 
     @Override

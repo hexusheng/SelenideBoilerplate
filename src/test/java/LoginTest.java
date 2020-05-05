@@ -1,13 +1,20 @@
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import helpers.DriverHelper;
+import io.qameta.allure.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.annotations.DataProvider;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class LoginTest extends A_BaseTest
 {
+    @Attachment
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) DriverHelper.currentDriver()).getScreenshotAs(OutputType.BYTES);
+    }
 
     @Test
     @Description("Авторизация через email")
@@ -17,14 +24,32 @@ public class LoginTest extends A_BaseTest
         app.loginPage.login("atcopybet1@yandex.ru", "test777");
     }
 
-//    @Test(dataProvider="getData")
-//    public void instanceDbProvider(int p1, String p2) {
-//        System.out.println("Instance DataProvider Example: Data(" + p1 + ", " + p2 + ")");
-//    }
-//
-//    @DataProvider
-//    public Object[][] getData() {
-//        return new Object[][]{{5, "five"}, {6, "six"}};
-//    }
+    @Test
+    @Description("Тест с приложениями")
+    public void testWithAttachments() {
+        app.loginPage.open();
+
+        // Способ прикрепить приложение №1
+        Allure.addAttachment("My attachment", "yeah, I am an Attachment! Some logs...");
+
+        // Способ прикрепить приложение №2
+        takeScreenshot();
+    }
+
+    @Test
+    @Description("Тест с ссылками")
+    @Issue("123")  // example - jira
+    @TmsLink("test-1") // test management link, example - test rails
+    public void testWithLinks() {
+        app.loginPage.open();
+    }
+
+    @Test
+    @Description("Тест с ошибкой. Здесь срабатывает A_ErrorsLogListener и к отчету добавляется скриншот с ошибкой")
+    @Severity(SeverityLevel.MINOR)
+    public void failedTest() {
+        app.loginPage.open();
+        Assert.assertEquals(2,1);
+    }
 
 }
