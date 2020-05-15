@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="CopybetAutoTests" verbose="1"  >
+<suite name="CopybetAutoTests" verbose="1"  parallel="classes" thread-count="2">
 
 <!--    parallel="methods" thread-count="2"-->
 
@@ -10,7 +10,11 @@
 
     <test name="Tests">
         <classes>
-            <class name="LoginTest" />
+<!--            <class name="AllureTest" />-->
+<!--            <class name="ParallelMethodsTest" />-->
+
+            <class name="ParallelClassOneTest" />
+            <class name="ParallelClassTwoTest" />
         </classes>
     </test>
 

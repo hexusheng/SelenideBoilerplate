@@ -1,7 +1,7 @@
 package app.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import helpers.DriverHelper;
+import helpers.Driver;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -24,6 +24,6 @@ public class LoginPage extends BasePage {
         passwordField.setValue(password);
         termsOfUseLabel.click();
         signInButton.click();
-        DriverHelper.waitForUrlContains("account/accounts");
+        Driver.waitForUrlContains("account/accounts");
     }
 }

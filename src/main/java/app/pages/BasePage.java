@@ -1,6 +1,6 @@
 package app.pages;
 import app.AppConfig;
-import helpers.DriverHelper;
+import com.codeborne.selenide.Selenide;
 import helpers.Trim;
 
 public abstract class BasePage {
@@ -12,6 +12,7 @@ public abstract class BasePage {
     }
 
     public void open() {
-        DriverHelper.open(Trim.rtrim(AppConfig.baseUrl, "/") + "/" + Trim.ltrim(pageUrl, "/"));
+        String url = Trim.rtrim(AppConfig.baseUrl, "/") + "/" + Trim.ltrim(pageUrl, "/");
+        Selenide.open(url);
     }
 }

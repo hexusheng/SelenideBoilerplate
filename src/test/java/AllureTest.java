@@ -1,19 +1,15 @@
-import helpers.DriverHelper;
+import helpers.Driver;
 import io.qameta.allure.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-public class LoginTest extends A_BaseTest
+public class AllureTest extends A_BaseTestParallelClasses
 {
     @Attachment
     public byte[] takeScreenshot() {
-        return ((TakesScreenshot) DriverHelper.currentDriver()).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) Driver.currentDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Test
