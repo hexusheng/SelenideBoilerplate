@@ -5,7 +5,7 @@
 <!--    parallel="methods" thread-count="2"-->
 
     <listeners>
-        <listener class-name="A_ErrorsLogListener"/>
+        <listener class-name="A_BaseTestListener"/>
     </listeners>
 
     <test name="Tests">

@@ -1,3 +1,4 @@
+import helpers.Driver;
 import org.testng.annotations.Test;
 
 public class ParallelClassOneTest extends A_BaseTestParallelClasses {

@@ -29,5 +29,4 @@ public class CsvDataProviderTest {
         app.loginPage.login(username, password);
     }
 
-
 }

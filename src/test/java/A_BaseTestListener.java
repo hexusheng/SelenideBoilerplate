@@ -6,7 +6,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class A_ErrorsLogListener implements ITestListener {
+public class A_BaseTestListener implements ITestListener {
 
     @Attachment(value = "error screenshot", type = "image/png")
     public byte[] takeScreenshot() {

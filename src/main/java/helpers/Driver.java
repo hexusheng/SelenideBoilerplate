@@ -3,16 +3,22 @@ package helpers;
 import app.AppConfig;
 import com.codeborne.selenide.*;
 import com.saucelabs.saucerest.SauceREST;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class Driver {
 
@@ -143,4 +149,40 @@ public class Driver {
             e.printStackTrace();
         }
     }
+
+    public static void takeScreenshot() {
+
+        File scrFile = ((TakesScreenshot) currentDriver()).getScreenshotAs(OutputType.FILE);
+
+        String path = System.getProperty("user.dir")
+                + File.separator + "test-output"
+                + File.separator + "screenshots"
+                + File.separator + " " + "screenshot_" +  (new SimpleDateFormat("HHmmssSSS").format(new Date())) + ".png";
+        try {
+            FileUtils.copyFile(scrFile, new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<LogEntry> getBrowserLogs() {
+        LogEntries log = currentDriver().manage().logs().get("browser");
+        List<LogEntry> logList = log.getAll();
+        return logList;
+    }
+
+    // COOKIES
+
+    public static void addCookie(Cookie cookie) {
+        currentDriver().manage().addCookie(cookie);
+    }
+
+    public static Cookie getCookie(String cookieName) {
+        return currentDriver().manage().getCookieNamed(cookieName);
+    }
+
+    public static void deleteCookie(String cookieName) {
+        currentDriver().manage().deleteCookieNamed(cookieName);
+    }
+
 }
