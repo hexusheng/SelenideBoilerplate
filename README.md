@@ -5,6 +5,7 @@ Java + Selenide + TestNG + Allure
 
 mvn test -Dbrowser=chrome -Dheadless=1
 
+browser - chrome, firefox, remote
 
 Allure отчет - `allure serve target/allure-results`
 
@@ -13,6 +14,16 @@ Allure отчет - `allure serve target/allure-results`
 Selenide
 
 Браузер (настройки selenide) инициируется в конструкторе класса App
+
+Если используется свой драйвер - WebDriverRunner.setWebDriver(driver), Selenide.close() работать не будет.
+Нужно закрывать через свой драйвер.
+
+
+
+-----
+Запись видео.
+Работает только только локально, в headless  режиме не работает. Просто снимет весь экран. 
+ 
 
 Create properties file video.properties in classpath:
 

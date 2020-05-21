@@ -29,6 +29,13 @@ public class Driver {
 
         TestConfig.initConfig();
 
+        // Check if remote driver
+
+        if(TestConfig.browser.contains("remote")) {
+            initRemoteDriver();
+            return;
+        }
+
         // Set settings for selenide browser
 
         Configuration.pageLoadStrategy = "eager";
@@ -55,34 +62,33 @@ public class Driver {
         }
     }
 
-    public static void initRemotedriver() {
-        String host = "";
+    public static void initRemoteDriver() {
+        String host = "http://%s:%s@ondemand.eu-central-1.saucelabs.com/wd/hub";
+
         String browserName = "chrome";
         String browserVersion = "81.0";
         String platformName = "Windows 10";
+
         String sauceUser = "atcopybet1";
         String sauceKey = "776ed98f-1740-481f-afe1-bdbb88a918c7";
+
+        String sauceUrl = String.format(host, sauceUser, sauceKey);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("browserName", browserName);
         capabilities.setCapability("version", browserVersion);
         capabilities.setCapability("platform", platformName);
-
-
-
-        String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub", sauceUser, sauceKey);
-
+        capabilities.setCapability("screenResolution", "1920x1080");
+//        capabilities.setCapability("recordVideo", false);
+//        capabilities.setCapability("recordScreenshots", false);
 
         try {
             WebDriver driver = new RemoteWebDriver(new URL(sauceUrl),capabilities);
             WebDriverRunner.setWebDriver(driver);
             String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
             SauceREST sauceClient = new SauceREST(sauceUser, sauceKey);
-        } catch (MalformedURLException e) {
-
-        }
-
+        } catch (MalformedURLException e) {}
     }
 
     public static WebDriver currentDriver() {
@@ -137,8 +143,8 @@ public class Driver {
         Selenide.clearBrowserLocalStorage();
     }
 
-    public static void quit() {
-        Selenide.close();
+    public static void close() {
+        currentDriver().quit();
     }
 
     public static void wait(int seconds)

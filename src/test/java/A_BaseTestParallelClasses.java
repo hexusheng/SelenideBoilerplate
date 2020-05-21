@@ -23,6 +23,6 @@ class A_BaseTestParallelClasses {
 
     @AfterClass
     public void tearDown() {
-        Driver.quit();
+        Driver.close();
     }
 }

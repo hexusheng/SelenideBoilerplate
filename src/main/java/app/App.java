@@ -11,8 +11,6 @@ public class App {
 
         Driver.initDriver();
 
-        //Driver.initRemotedriver();
-
         loginPage = PageBuilder.buildLoginPage();
     }
 }
