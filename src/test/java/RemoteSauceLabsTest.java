@@ -31,7 +31,6 @@ public class RemoteSauceLabsTest {
         app.loginPage.login("atcopybet1@yandex.ru", "test777");
 
         softAssert.assertEquals(1,1);
-        softAssert.assertEquals(1,2);
         softAssert.assertAll();
     }
 
