@@ -18,7 +18,7 @@ Selenide
 Если используется свой драйвер - WebDriverRunner.setWebDriver(driver), Selenide.close() работать не будет.
 Нужно закрывать через свой драйвер.
 
-
+....
 
 -----
 Запись видео.
